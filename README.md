@@ -4,6 +4,14 @@ Interactive Spelling Bee Adventure Game for Kids - Built with Flask
 **Made with ❤️ by Sanchit**  
 If you'd like to reuse this project, please email: [sanchit.chaudhary@live.com](mailto:sanchit.chaudhary@live.com)
 
+## ⚠️ License & Reuse Restrictions
+
+This project is **not open for public cloning, redistribution, or reuse**.  
+All rights are reserved by the author, **Sanchit**.
+
+For educational use only.  
+To request access or permission, please email: [sanchit.chaudhary@live.com](mailto:sanchit.chaudhary@live.com)
+
 
 ## Overview
 
