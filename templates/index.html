@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>🐝 Spelling Bee Adventure</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(45deg, #FFB6C1, #87CEEB, #98FB98, #FFE4B5, #DDA0DD);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F0F8FF 50%, #FFFACD 100%);
+            border-radius: clamp(15px, 4vw, 30px);
+            padding: clamp(20px, 6vw, 40px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2), 0 0 30px rgba(255,215,0,0.3);
+            text-align: center;
+            max-width: min(650px, 95vw);
+            width: 100%;
+            border: clamp(2px, 0.8vw, 5px) solid #FFD700;
+            position: relative;
+            overflow: hidden;
+            margin: clamp(10px, 2vh, 20px) auto;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,215,0,0.1) 10px,
+                rgba(255,215,0,0.1) 20px
+            );
+            animation: sparkle 20s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes sparkle {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .title {
+            font-size: clamp(1.5rem, 5vw, 3rem);
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1, #96CEB4, #FFEAA7);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rainbowText 3s ease-in-out infinite;
+            margin-bottom: clamp(15px, 3vh, 30px);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        @keyframes rainbowText {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .logo-container {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .main-logo {
+            max-width: min(350px, 50vw);
+            width: 85%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .main-logo:hover {
+            transform: scale(1.02);
+        }
+        
+        .nav-buttons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .nav-btn {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            font-size: 1.1em;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+        
+        .setup-section {
+            margin-bottom: 30px;
+        }
+        
+        .age-label {
+            font-size: 1.2em;
+            color: #4B0082;
+            margin-bottom: 15px;
+        }
+        
+        .age-select {
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            padding: clamp(8px, 2vw, 10px) clamp(15px, 4vw, 20px);
+            border: clamp(2px, 0.5vw, 3px) solid #FFB6C1;
+            border-radius: clamp(10px, 3vw, 15px);
+            background: #F0F8FF;
+            color: #2E8B57;
+            font-weight: bold;
+            cursor: pointer;
+            width: min(300px, 80vw);
+        }
+        
+        .start-btn {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1, #96CEB4);
+            background-size: 300% 300%;
+            animation: gradientShift 3s ease infinite;
+            color: white;
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            font-weight: bold;
+            padding: clamp(12px, 3vw, 18px) clamp(25px, 6vw, 35px);
+            border: none;
+            border-radius: clamp(20px, 5vw, 30px);
+            cursor: pointer;
+            margin-top: clamp(15px, 3vh, 25px);
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+            width: min(300px, 80vw);
+        }
+        
+        .start-btn:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+        }
+        
+        .start-btn:active {
+            transform: translateY(-2px);
+            animation: pulse 0.2s ease;
+        }
+        
+        .game-section {
+            display: none;
+        }
+        
+        .progress {
+            font-size: 1.1em;
+            color: #4B0082;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .word-display {
+            background: linear-gradient(135deg, #FFE4E1, #E0FFFF, #F0FFF0, #FFF8DC);
+            background-size: 400% 400%;
+            animation: gradientShift 6s ease infinite;
+            padding: 40px;
+            border-radius: 25px;
+            margin: 25px 0;
+            border: 6px solid #FF69B4;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1), inset 0 0 20px rgba(255,255,255,0.5);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .word-text {
+            font-size: 2.2em;
+            color: #4B0082;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            background: linear-gradient(45deg, #FF1493, #00CED1, #32CD32, #FF4500);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rainbowText 4s ease-in-out infinite;
+        }
+        
+        .audio-button {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .audio-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.3);
+        }
+        
+        .audio-button:active {
+            transform: translateY(-1px);
+            animation: pulse 0.3s ease;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .spell-prompt {
+            font-size: 1.2em;
+            color: #2E8B57;
+            margin-bottom: 20px;
+        }
+        
+        .answer-input {
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            padding: clamp(12px, 3vw, 18px);
+            border: clamp(2px, 0.8vw, 4px) solid #FF69B4;
+            border-radius: clamp(15px, 4vw, 20px);
+            width: min(400px, 80vw);
+            text-align: center;
+            margin-bottom: clamp(15px, 3vh, 25px);
+            background: linear-gradient(135deg, #FFF0F5, #F0FFFF);
+            box-shadow: inset 0 3px 6px rgba(0,0,0,0.1), 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: normal;
+            color: #4B0082;
+        }
+        
+        .answer-input:focus {
+            outline: none;
+            border-color: #FFD700;
+            transform: scale(1.02);
+            box-shadow: inset 0 3px 6px rgba(0,0,0,0.1), 0 8px 20px rgba(255,215,0,0.4);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(45deg, #32CD32, #228B22, #98FB98);
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease infinite;
+            color: white;
+            font-size: clamp(0.9rem, 2.5vw, 1.3rem);
+            font-weight: bold;
+            padding: clamp(10px, 2.5vw, 15px) clamp(20px, 5vw, 30px);
+            border: none;
+            border-radius: clamp(15px, 4vw, 25px);
+            cursor: pointer;
+            margin: clamp(5px, 1vw, 10px);
+            transition: all 0.3s;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        
+        .next-btn {
+            background: linear-gradient(45deg, #4169E1, #1E90FF, #87CEEB);
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease infinite;
+            color: white;
+            font-size: 1.3em;
+            font-weight: bold;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: all 0.3s;
+            display: none;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .next-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        
+        .feedback {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            font-weight: bold;
+            margin: 15px 0 25px 0;
+            padding: clamp(12px, 3vw, 20px);
+            border-radius: clamp(10px, 2.5vw, 15px);
+            text-align: center;
+            border: 3px solid;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            animation: feedbackPop 0.5s ease-out;
+        }
+        
+        @keyframes feedbackPop {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .feedback.correct {
+            background: linear-gradient(135deg, #90EE90, #98FB98);
+            color: #006400;
+            border-color: #32CD32;
+        }
+        
+        .feedback.incorrect {
+            background: linear-gradient(135deg, #FFB6C1, #FFC0CB);
+            color: #8B0000;
+            border-color: #DC143C;
+        }
+        
+        .score {
+            font-size: 1.2em;
+            color: #FF6B6B;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        
+        .game-over {
+            background: linear-gradient(135deg, #FFE4E1, #F0F8FF, #FFF8DC);
+            background-size: 400% 400%;
+            animation: gradientShift 4s ease infinite;
+            padding: 40px;
+            border-radius: 25px;
+            margin: 30px 0;
+            border: 6px solid #FFD700;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2), inset 0 0 20px rgba(255,215,0,0.3);
+            text-align: center;
+            position: relative;
+        }
+        
+        .trophy-container {
+            font-size: 4em;
+            margin-bottom: 20px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .trophy-message {
+            font-size: 2.2em;
+            background: linear-gradient(45deg, #FFD700, #FFA500, #FF6347, #DA70D6);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rainbowText 3s ease-in-out infinite;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.1);
+        }
+        
+        .approval-message {
+            font-size: 1.5em;
+            color: #4B0082;
+            font-weight: bold;
+            margin-top: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .final-score {
+            font-size: 2em;
+            color: #2E8B57;
+            margin-bottom: 20px;
+        }
+        
+        .encouragement {
+            font-size: 1.3em;
+            color: #4B0082;
+            margin-bottom: 20px;
+        }
+        
+        .play-again-btn {
+            background: linear-gradient(45deg, #FF69B4, #FF1493);
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .play-again-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .loading {
+            color: #4B0082;
+            font-style: italic;
+        }
+        
+        .mobile-logo-container {
+            display: none;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .mobile-logo {
+            max-width: min(150px, 40vw);
+            width: 60%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-logo:hover {
+            transform: scale(1.02);
+        }
+
+        /* Mobile Responsive Styles */
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 5px;
+                align-items: flex-start;
+                min-height: 100vh;
+                padding-top: 10px;
+            }
+            
+            .container {
+                max-width: 100%;
+                width: 98%;
+                padding: 15px;
+                border-radius: 15px;
+                border-width: 2px;
+                margin: 0 auto;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                min-height: auto;
+            }
+            
+            .logo-container {
+                display: none !important;
+                visibility: hidden !important;
+                height: 0 !important;
+                overflow: hidden !important;
+            }
+            
+            .main-logo {
+                display: none !important;
+                visibility: hidden !important;
+            }
+            
+            .title {
+                font-size: 1.8em;
+                margin-bottom: 15px;
+            }
+            
+            .mobile-title {
+                display: block !important;
+                font-size: 1.5em;
+                color: #FF6B35;
+                font-weight: bold;
+                margin-bottom: 15px;
+                text-align: center;
+            }
+            
+            .nav-buttons {
+                position: static;
+                justify-content: center;
+                margin-bottom: 15px;
+                flex-wrap: wrap;
+            }
+            
+            .nav-btn {
+                font-size: 0.9em;
+                padding: 8px 15px;
+                margin: 5px;
+            }
+            
+            .age-label {
+                font-size: 1em;
+                margin-bottom: 10px;
+            }
+            
+            .age-select {
+                font-size: 0.9em;
+                padding: 8px 12px;
+                width: 85%;
+                max-width: 280px;
+            }
+            
+            .start-btn {
+                font-size: 1em;
+                padding: 10px 20px;
+                width: 85%;
+                max-width: 280px;
+                margin-top: 15px;
+            }
+            
+            .word-display {
+                padding: 25px 15px;
+                margin: 20px 0;
+                border-width: 4px;
+            }
+            
+            .word-text {
+                font-size: 1.6em;
+                margin-bottom: 15px;
+                line-height: 1.2;
+                word-wrap: break-word;
+            }
+            
+            .audio-button {
+                font-size: 1em;
+                padding: 12px 20px;
+                width: 90%;
+                max-width: 250px;
+            }
+            
+            .answer-input {
+                font-size: 1.2em;
+                padding: 15px;
+                width: 85%;
+                margin-bottom: 20px;
+                border-width: 3px;
+            }
+            
+            .submit-btn, .next-btn {
+                font-size: 1.1em;
+                padding: 12px 20px;
+                margin: 5px;
+                width: 45%;
+                max-width: 150px;
+            }
+            
+            .progress, .score {
+                font-size: 1em;
+                margin-bottom: 15px;
+            }
+            
+            .spell-prompt {
+                font-size: 1.1em;
+                margin-bottom: 15px;
+            }
+            
+            .feedback {
+                font-size: 1.1em;
+                padding: 15px;
+                margin-top: 15px;
+            }
+            
+            .trophy-container {
+                font-size: 4em;
+                margin-bottom: 15px;
+            }
+            
+            .trophy-message {
+                font-size: 1.8em;
+                margin-bottom: 10px;
+            }
+            
+            .approval-message {
+                font-size: 1.1em;
+                margin-bottom: 15px;
+            }
+            
+            .final-score {
+                font-size: 1.3em;
+                margin-bottom: 15px;
+            }
+            
+            .encouragement {
+                font-size: 1em;
+                margin-bottom: 20px;
+            }
+            
+            .play-again-btn {
+                font-size: 1.1em;
+                padding: 12px 25px;
+                width: 80%;
+                max-width: 200px;
+            }
+        }
+
+        /* Extra small screens (phones in portrait) */
+        @media screen and (max-width: 480px) {
+            body {
+                padding: 2px;
+                padding-top: 5px;
+            }
+            
+            .container {
+                width: 99%;
+                padding: 10px;
+                border-radius: 10px;
+                border-width: 1px;
+            }
+            
+            .logo-container {
+                display: none !important;
+                visibility: hidden !important;
+                height: 0 !important;
+                overflow: hidden !important;
+            }
+            
+            .main-logo {
+                display: none !important;
+                visibility: hidden !important;
+            }
+            
+            .mobile-title {
+                display: block !important;
+            }
+            
+            .title {
+                font-size: 1.2em;
+                margin-bottom: 8px;
+            }
+            
+            .mobile-title {
+                display: block;
+                font-size: 1.1em;
+                color: #FF6B35;
+                font-weight: bold;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+            
+            .age-label {
+                font-size: 0.9em;
+                margin-bottom: 8px;
+            }
+            
+            .age-select {
+                font-size: 0.8em;
+                padding: 6px 10px;
+                width: 90%;
+            }
+            
+            .start-btn {
+                font-size: 0.9em;
+                padding: 8px 16px;
+                margin-top: 10px;
+                width: 90%;
+            }
+            
+            .word-text {
+                font-size: 1.4em;
+            }
+            
+            .answer-input {
+                width: 90%;
+                font-size: 1.1em;
+            }
+            
+            .submit-btn, .next-btn {
+                width: 90%;
+                max-width: none;
+                margin: 8px 0;
+            }
+            
+            .audio-button {
+                width: 95%;
+                max-width: none;
+            }
+            
+            .nav-btn {
+                font-size: 0.8em;
+                padding: 6px 12px;
+            }
+        }
+
+        /* Landscape orientation adjustments */
+        @media screen and (max-height: 500px) and (orientation: landscape) {
+            body {
+                padding: 5px;
+            }
+            
+            .container {
+                padding: 15px;
+                margin: 10px auto;
+            }
+            
+            .main-logo {
+                max-width: 30px;
+            }
+            
+            .word-display {
+                padding: 20px 15px;
+                margin: 15px 0;
+            }
+            
+            .word-text {
+                font-size: 1.3em;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <img src="/static/LogoSamairaSneha_1751165914997.png" alt="BeeSmart! with Samaira & Sneha" class="main-logo">
+        </div>
+        
+        <div class="mobile-logo-container">
+            <img src="/static/mobile-logo.png" alt="BeeSmart! Mobile Logo" class="mobile-logo">
+        </div>
+        
+        <!-- Setup Section -->
+        <div class="setup-section" id="setup">
+            <div class="age-label">Select your age group:</div>
+            <select class="age-select" id="ageSelect">
+                <option value="">Choose your age...</option>
+                <option value="5-6">5-6 years old</option>
+                <option value="7-8">7-8 years old</option>
+                <option value="9-10">9-10 years old</option>
+                <option value="11-12">11-12 years old</option>
+            </select>
+            <br>
+            <button class="start-btn" onclick="startGame()">🚀 Start Spelling Adventure!</button>
+            <div id="loading" class="loading" style="display: none;">Loading your adventure...</div>
+        </div>
+        
+        <!-- Game Section -->
+        <div class="game-section" id="game">
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="goHome()">🏠 Home</button>
+                <button class="nav-btn" onclick="restartGame()">🔄 Restart</button>
+            </div>
+            
+            <!-- Feedback at the top for visibility -->
+            <div class="feedback" id="feedback"></div>
+            
+            <div class="progress" id="progress"></div>
+            <div class="score" id="score"></div>
+            
+            <div class="word-display">
+                <div class="word-text" id="wordText"></div>
+                
+                <button class="audio-button" onclick="hearWord()">🔊 Hear the Word</button>
+            </div>
+            
+            <div class="spell-prompt">Type the spelling:</div>
+            <input type="text" class="answer-input" id="answerInput" placeholder="Enter your spelling here...">
+            <br>
+            <button class="submit-btn" onclick="checkAnswer()">✓ Check Spelling</button>
+            <button class="next-btn" id="nextBtn" onclick="nextQuestion()">➡️ Next Word</button>
+        </div>
+        
+        <!-- Game Over Section -->
+        <div class="game-over" id="gameOver" style="display: none;">
+            <div class="trophy-container">🏆</div>
+            <div class="trophy-message">You're a Word Star! ⭐</div>
+            <div class="approval-message">– Samaira & Sneha Approved</div>
+            <div class="final-score" id="finalScore"></div>
+            <div class="encouragement" id="encouragement"></div>
+            <button class="play-again-btn" onclick="playAgain()">🎮 Play Again!</button>
+        </div>
+    </div>
+
+    <script>
+        // Auto-responsive layout handler
+        function handleResponsiveLayout() {
+            const screenWidth = window.innerWidth;
+            const logoContainer = document.querySelector('.logo-container');
+            const mobileLogoContainer = document.querySelector('.mobile-logo-container');
+            
+            // For mobile and tablet (up to 768px)
+            if (screenWidth <= 768) {
+                if (logoContainer) {
+                    logoContainer.style.display = 'none';
+                }
+                if (mobileLogoContainer) {
+                    mobileLogoContainer.style.display = 'block';
+                }
+            } 
+            // For laptop and desktop (above 768px)
+            else {
+                if (logoContainer) {
+                    logoContainer.style.display = 'block';
+                }
+                if (mobileLogoContainer) {
+                    mobileLogoContainer.style.display = 'none';
+                }
+            }
+        }
+        
+        // Run on page load and window resize for auto-responsive behavior
+        window.addEventListener('load', handleResponsiveLayout);
+        window.addEventListener('resize', handleResponsiveLayout);
+        
+        let currentGame = null;
+        let currentWord = '';
+        let questionAnswered = false;
+        
+        async function startGame() {
+            const ageGroup = document.getElementById('ageSelect').value;
+            if (!ageGroup) {
+                alert('Please select your age group first!');
+                return;
+            }
+            
+            document.getElementById('loading').style.display = 'block';
+            
+            try {
+                const response = await fetch('/start_game', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ age_group: ageGroup })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('setup').style.display = 'none';
+                    document.getElementById('game').style.display = 'block';
+                    document.getElementById('loading').style.display = 'none';
+                    
+                    currentGame = data;
+                    loadNextQuestion();
+                } else {
+                    alert('Error starting game: ' + data.error);
+                    document.getElementById('loading').style.display = 'none';
+                }
+            } catch (error) {
+                alert('Error starting game. Please try again.');
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+        
+        async function loadNextQuestion() {
+            try {
+                const response = await fetch('/get_question');
+                const data = await response.json();
+                
+                if (data.game_over) {
+                    // Game is over, get final results
+                    return;
+                }
+                
+                document.getElementById('progress').textContent = `Question ${data.question_number} of ${data.total_questions}`;
+                document.getElementById('wordText').textContent = data.definition;
+                document.getElementById('score').textContent = `Score: ${data.score}/${data.question_number - 1}`;
+                document.getElementById('answerInput').value = '';
+                document.getElementById('answerInput').focus();
+                document.getElementById('feedback').style.display = 'none';
+                document.getElementById('nextBtn').style.display = 'none';
+                
+                // Store current word and reset question state
+                currentWord = data.word;
+                questionAnswered = false;
+            } catch (error) {
+                alert('Error loading question. Please try again.');
+            }
+        }
+        
+        async function checkAnswer() {
+            // Prevent multiple submissions
+            if (questionAnswered) {
+                return;
+            }
+            
+            const answer = document.getElementById('answerInput').value.trim();
+            if (!answer) {
+                alert('Please enter a spelling!');
+                return;
+            }
+            
+            // Mark as answered immediately to prevent double clicks
+            questionAnswered = true;
+            
+            try {
+                const response = await fetch('/check_answer', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ answer: answer })
+                });
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    alert(data.error);
+                    questionAnswered = false; // Reset if there was an error
+                    return;
+                }
+                
+                const feedbackDiv = document.getElementById('feedback');
+                feedbackDiv.style.display = 'block';
+                
+                if (data.correct) {
+                    feedbackDiv.className = 'feedback correct';
+                    feedbackDiv.textContent = '🎉 Correct! Well done!';
+                } else {
+                    feedbackDiv.className = 'feedback incorrect';
+                    feedbackDiv.textContent = `❌ Incorrect. The correct spelling is: ${data.correct_word}`;
+                }
+                
+                document.getElementById('score').textContent = `Score: ${data.score}/${data.question_number - 1}`;
+                
+                if (data.game_over) {
+                    setTimeout(() => showGameOver(data), 2000);
+                } else {
+                    document.getElementById('nextBtn').style.display = 'inline-block';
+                }
+            } catch (error) {
+                alert('Error checking answer. Please try again.');
+                questionAnswered = false; // Reset on error
+            }
+        }
+        
+        function nextQuestion() {
+            loadNextQuestion();
+        }
+        
+        function showGameOver(data) {
+            document.getElementById('game').style.display = 'none';
+            
+            const percentage = data.percentage;
+            let message, emoji;
+            
+            if (percentage >= 90) {
+                message = "Outstanding! You're a spelling superstar!";
+                emoji = "🏆";
+            } else if (percentage >= 80) {
+                message = "Excellent work! You're getting really good at spelling!";
+                emoji = "⭐";
+            } else if (percentage >= 70) {
+                message = "Great job! Keep practicing and you'll be even better!";
+                emoji = "🎯";
+            } else if (percentage >= 60) {
+                message = "Good effort! Practice makes perfect!";
+                emoji = "📚";
+            } else {
+                message = "Nice try! Keep practicing - you'll improve with time!";
+                emoji = "🌱";
+            }
+            
+            document.getElementById('finalScore').textContent = `${emoji} Final Score: ${data.final_score}/${data.total_questions} (${percentage.toFixed(1)}%)`;
+            document.getElementById('encouragement').textContent = message;
+            document.getElementById('gameOver').style.display = 'block';
+        }
+        
+        function playAgain() {
+            document.getElementById('gameOver').style.display = 'none';
+            document.getElementById('setup').style.display = 'block';
+            document.getElementById('ageSelect').value = '';
+            document.getElementById('feedback').style.display = 'none';
+        }
+        
+        function goHome() {
+            // Go back to the main screen
+            document.getElementById('setup').style.display = 'block';
+            document.getElementById('game').style.display = 'none';
+            document.getElementById('gameOver').style.display = 'none';
+            document.getElementById('ageSelect').value = '';
+            document.getElementById('feedback').style.display = 'none';
+        }
+        
+        async function restartGame() {
+            // Restart with same age group but different questions
+            const ageGroup = document.getElementById('ageSelect').value;
+            if (!ageGroup) {
+                alert('Please select your age group first!');
+                return;
+            }
+            
+            try {
+                const response = await fetch('/start_game', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ age_group: ageGroup })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    currentGame = data;
+                    
+                    // Hide game over screen and show game
+                    document.getElementById('gameOver').style.display = 'none';
+                    document.getElementById('game').style.display = 'block';
+                    
+                    // Get first question
+                    await loadNextQuestion();
+                } else {
+                    alert('Error starting new game. Please try again!');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Connection error. Please check your internet and try again!');
+            }
+        }
+        
+        // Audio function
+        function hearWord() {
+            if (!currentWord) return;
+            
+            // Use Web Speech API for text-to-speech
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(currentWord);
+                utterance.rate = 0.7; // Slower speech for kids
+                utterance.pitch = 1.1; // Slightly higher pitch
+                speechSynthesis.speak(utterance);
+                
+                // Visual feedback without revealing the word
+                const audioBtn = document.querySelector('.audio-button');
+                const originalText = audioBtn.textContent;
+                audioBtn.textContent = '🔊 Playing...';
+                audioBtn.disabled = true;
+                
+                setTimeout(() => {
+                    audioBtn.textContent = originalText;
+                    audioBtn.disabled = false;
+                }, 2000);
+            } else {
+                alert('Audio not supported in this browser. Try using Chrome or Firefox!');
+            }
+        }
+        
+        // Allow Enter key to submit answers
+        document.getElementById('answerInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                if (document.getElementById('nextBtn').style.display === 'inline-block') {
+                    nextQuestion();
+                } else {
+                    checkAnswer();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
