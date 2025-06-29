@@ -1,5 +1,9 @@
-# Spelling Bee Adventure Game
+# Spelling Bee Adventure Game  
 Interactive Spelling Bee Adventure Game for Kids - Built with Flask
+
+**Made with ❤️ by Sanchit**  
+If you'd like to reuse this project, please email: [sanchit.chaudhary@live.com](mailto:sanchit.chaudhary@live.com)
+
 
 ## Overview
 
@@ -100,3 +104,10 @@ Preferred communication style: Simple, everyday language.
 ## Changelog
 
 - June 28, 2025: Initial Flask web application setup
+
+## Attribution
+
+This game was created by **Sanchit** as a fun and educational project for children.  
+If you'd like to reuse or contribute to this project, please contact:  
+📧 [sanchit.chaudhary@live.com](mailto:sanchit.chaudhary@live.com)
+
