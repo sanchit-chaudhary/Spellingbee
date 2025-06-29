@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐝 Spelling Bee Adventure - Redirect</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(45deg, #FFB6C1, #87CEEB, #98FB98, #FFE4B5, #DDA0DD);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F0F8FF 50%, #FFFACD 100%);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2), 0 0 30px rgba(255,215,0,0.3);
+            max-width: 650px;
+            width: 100%;
+            border: 5px solid #FFD700;
+        }
+        
+        .logo {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #FF6B35;
+            font-size: 2.5em;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .redirect-btn {
+            background: linear-gradient(45deg, #FF6B35, #FF8E53);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .redirect-btn:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🐝 Spelling Bee Adventure</h1>
+        <p>This app is designed to run as a Flask web application.</p>
+        <p>To access the full interactive spelling bee game, please use the Flask server deployment.</p>
+        
+        <div style="margin-top: 30px;">
+            <h3>Deployment Configuration Needed:</h3>
+            <p style="text-align: left; padding: 20px; background: #f0f0f0; border-radius: 10px; margin: 20px 0;">
+                <strong>Current Issue:</strong> This deployment is configured for static hosting, but the app requires Flask server.<br><br>
+                <strong>Solution:</strong> Change deployment type from "static" to "autoscale" in the deployment settings.
+            </p>
+        </div>
+        
+        <script>
+            // Auto-redirect message
+            setTimeout(() => {
+                document.body.innerHTML += '<div style="position: fixed; top: 10px; left: 50%; transform: translateX(-50%); background: #ff6b35; color: white; padding: 10px 20px; border-radius: 5px; z-index: 1000;">Please change deployment to autoscale for full functionality!</div>';
+            }, 3000);
+        </script>
+    </div>
+</body>
+</html>
