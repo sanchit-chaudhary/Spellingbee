@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
 Production entry point for Spelling Bee Adventure Game
-This file is used by Replit's autoscale deployment
 """
 
 from app import app
