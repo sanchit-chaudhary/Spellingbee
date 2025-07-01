@@ -1,6 +1,5 @@
 """
 WSGI entry point for Spelling Bee Adventure Game
-This file is required for proper Flask deployment on Replit
 """
 
 from app import app
