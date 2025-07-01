@@ -2,12 +2,9 @@
 Interactive Spelling Bee Adventure Game for Kids - Built with Flask
 
 **Made with ❤️ by Sanchit**  
-If you'd like to reuse this project, please email: [sanchit.chaudhary@live.com](mailto:sanchit.chaudhary@live.com)
+If you'd like to reuse this project, feel free :-)
 
 ## ⚠️ License & Reuse Restrictions
-
-This project is **not open for public cloning, redistribution, or reuse**.  
-All rights are reserved by the author, **Sanchit**.
 
 For educational use only.  
 To request access or permission, please email: [sanchit.chaudhary@live.com](mailto:sanchit.chaudhary@live.com)
@@ -71,7 +68,6 @@ This is a Python-based Spelling Bee game for kids built with Flask web framework
 ## Deployment Strategy
 
 ### Flask Web Application Deployment (Recommended)
-- **Primary Method**: Change deployment type from "static" to "autoscale" in Replit deployment settings
 - **Server Requirements**: Flask web server with session management for game state
 - **Port Configuration**: Runs on port 5000 with 0.0.0.0 binding for external access
 - **Entry Points**: app.py (main) and wsgi.py (production deployment)
@@ -82,32 +78,10 @@ This is a Python-based Spelling Bee game for kids built with Flask web framework
 - **Build Process**: Use build.sh script to prepare static files
 - **User Experience**: Shows deployment guidance and redirect instructions
 
-### Deployment Troubleshooting
-1. **Current Issue**: Deployment configured for static hosting but requires Flask server
-2. **Solution**: Change deployment target from "static" to "autoscale" 
-3. **Alternative**: Use spellingchamp directory with static fallback page
-4. **Files Created**: spellingchamp/index.html, build.sh, wsgi.py for deployment support
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
-
-## Recent Changes
-
-- June 29, 2025: Deployment Configuration Fixes
-  - Created spellingchamp directory with static deployment fallback
-  - Added build.sh script for static file preparation
-  - Created wsgi.py entry point for proper Flask deployment
-  - Fixed deployment issues by providing both static and dynamic deployment support
-  - Added comprehensive deployment documentation and troubleshooting guide
-
-- June 29, 2025: Major UI overhaul with custom BeeSmart! logo integration
-  - Replaced title with official BeeSmart! with Samaira & Sneha logo
-  - Added Home and Restart navigation buttons during gameplay
-  - Enhanced trophy completion screen with "You're a Word Star! ⭐ – Samaira & Sneha Approved"
-  - Significantly improved visual design with animated gradients, rainbow effects, and bouncing animations
-  - Fixed audio pronunciation to not reveal answers
-  - Ensured different questions on each restart through existing backend randomization
 
 ## Changelog
 
