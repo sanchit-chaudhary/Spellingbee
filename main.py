@@ -4,7 +4,7 @@ import random
 import os
 from typing import Dict, List, Tuple
 
-# Configure display for Replit environment
+# Configure display
 if 'DISPLAY' not in os.environ:
     os.environ['DISPLAY'] = ':0'
 
